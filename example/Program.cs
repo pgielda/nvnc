@@ -9,7 +9,7 @@ namespace VNCTest
     {
         static void Main(string[] args)
         {
-            VncServer s = new VncServer("T!T@N", 5900, "T!T@N-VNC");
+            VncServer s = new VncServer("", 5900, "VNC");
             try
             {
                 s.Start();
