@@ -52,7 +52,10 @@ namespace NVNC
         public EncodedRectangle Build(Rectangle rectangle, RfbProtocol.Encoding encoding)
         {
             EncodedRectangle e = null;
-            Bitmap bmp = PixelGrabber.CreateScreenCapture(rectangle);
+            //Bitmap bmp = PixelGrabber.CreateScreenCapture(rectangle);
+            Bitmap bmp = new Bitmap(rectangle.Width, rectangle.Height);
+            Graphics g = Graphics.FromImage(bmp);
+            g.CopyFromScreen(rectangle.X, rectangle.Y, 0, 0, new Size(rectangle.Width, rectangle.Height));
             int[] pixels = PixelGrabber.GrabPixels(bmp, rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height, bmp.PixelFormat);
 
             switch (encoding)
