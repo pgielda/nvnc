@@ -37,6 +37,8 @@ namespace NVNC
         private int greenShift;
         private int blueShift;
 
+        public Action<Bitmap> ProcessFrame;
+
         private readonly int width;
         private readonly int height;
         public readonly int[] pixels;	 // I'm reusing the same pixel buffer for all update rectangles.

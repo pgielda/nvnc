@@ -27,7 +27,7 @@ namespace NVNC
     public class EncodedRectangleFactory
     {
         RfbProtocol rfb;
-        Framebuffer framebuffer;
+        public Framebuffer framebuffer;
 
         /// <summary>
         /// Creates an instance of the EncodedRectangleFactory using the connected RfbProtocol object and associated Framebuffer object.
@@ -55,7 +55,11 @@ namespace NVNC
             //Bitmap bmp = PixelGrabber.CreateScreenCapture(rectangle);
             Bitmap bmp = new Bitmap(rectangle.Width, rectangle.Height);
             Graphics g = Graphics.FromImage(bmp);
-            g.CopyFromScreen(rectangle.X, rectangle.Y, 0, 0, new Size(rectangle.Width, rectangle.Height));
+            if (framebuffer.ProcessFrame != null) {
+                framebuffer.ProcessFrame(bmp);
+            } else {
+                g.CopyFromScreen(rectangle.X, rectangle.Y, 0, 0, new Size(rectangle.Width, rectangle.Height));
+            }
             int[] pixels = PixelGrabber.GrabPixels(bmp, rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height, bmp.PixelFormat);
 
             switch (encoding)

@@ -99,6 +99,11 @@ namespace NVNC
             fb.DesktopName = name;
         }
 
+        public void ConnectAction(Action<Bitmap> action) {
+            Console.WriteLine("Connecting action !!!");
+            fb.ProcessFrame += action;
+        }
+
         public void Start()
         {
             if (String.IsNullOrEmpty(Name))
@@ -139,8 +144,8 @@ namespace NVNC
                         case RfbProtocol.ClientMessages.SET_PIXEL_FORMAT:
                             Console.WriteLine("Read SetPixelFormat");
                             Framebuffer f = host.ReadSetPixelFormat(fb.Width, fb.Height);
-                            if (f != null)
-                                fb = f;
+                          //  if (f != null)
+                          //      fb = f;
                             break;
                         case RfbProtocol.ClientMessages.READ_COLOR_MAP_ENTRIES:
                             Console.WriteLine("Read ReadColorMapEntry");
