@@ -10,14 +10,27 @@ namespace VNCTest
     {
         static void ac(Bitmap bmp) {
                 Console.WriteLine("we have bit={0}", bmp);
-                 Graphics g = Graphics.FromImage(bmp);
-                  g.CopyFromScreen(0, 0, 0, 0, new Size(bmp.Width, bmp.Height));
+                Graphics g = Graphics.FromImage(bmp);
+                g.CopyFromScreen(0, 0, 0, 0, new Size(bmp.Width, bmp.Height));
+        }
+
+        static int[] ac2() {
+                Console.WriteLine("we got some question!!!");
+                int[] data = new int[640*480];
+                // do some lines
+                for (int i = 0; i < 10000; i += 10) {
+                        unchecked {
+                                data[i] = (int)0xFFFFFF00;
+                        }
+                }
+                return data;
         }
 
         static void Main(string[] args)
         {
-            VncServer s = new VncServer("", 5900, "VNC");
-            s.ConnectAction(ac);
+            VncServer s = new VncServer("", 5900, "VNC", 640, 480);
+            //s.ConnectAction(ac);
+            s.ConnectActionRaw(ac2);
             try
             {
                 s.Start();

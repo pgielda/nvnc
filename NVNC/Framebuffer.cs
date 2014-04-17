@@ -38,6 +38,7 @@ namespace NVNC
         private int blueShift;
 
         public Action<Bitmap> ProcessFrame;
+        public Func<int[]> ProcessFrameRaw;
 
         private readonly int width;
         private readonly int height;

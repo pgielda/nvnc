@@ -71,22 +71,15 @@ namespace NVNC
                 _name = value;
             }
         }
-        /// <summary>
-        /// The default constructor using the default values for the parameters.
-        /// Port is set to 5900, the Name is set to Default, and there is no password.
-        /// </summary>
-        public VncServer()
-            : this("", 5900, "Default")
-        { }
 
-        public VncServer(string password, int port, string name)
+        public VncServer(string password, int port, string name, int w, int h)
         {
             _password = password;
             _port = port;
             _name = name;
 
             Size screenSize = ScreenSize();
-            fb = new Framebuffer(screenSize.Width, screenSize.Height);
+            fb = new Framebuffer(w,h); // (screenSize.Width, screenSize.Height);
 
             fb.BitsPerPixel = 32;
             fb.Depth = 24;
@@ -102,6 +95,11 @@ namespace NVNC
         public void ConnectAction(Action<Bitmap> action) {
             Console.WriteLine("Connecting action !!!");
             fb.ProcessFrame += action;
+        }
+
+        public void ConnectActionRaw(Func<int[]> action) {
+            Console.WriteLine("Conncting raw action !!!");
+            fb.ProcessFrameRaw += action;
         }
 
         public void Start()
