@@ -140,17 +140,17 @@ namespace NVNC
                     switch (host.ReadServerMessageType())
                     {
                         case RfbProtocol.ClientMessages.SET_PIXEL_FORMAT:
-                            Console.WriteLine("Read SetPixelFormat");
+                            //Console.WriteLine("Read SetPixelFormat");
                             Framebuffer f = host.ReadSetPixelFormat(fb.Width, fb.Height);
                           //  if (f != null)
                           //      fb = f;
                             break;
                         case RfbProtocol.ClientMessages.READ_COLOR_MAP_ENTRIES:
-                            Console.WriteLine("Read ReadColorMapEntry");
+                            //Console.WriteLine("Read ReadColorMapEntry");
                             host.ReadColorMapEntry();
                             break;
                         case RfbProtocol.ClientMessages.SET_ENCODINGS:
-                            Console.WriteLine("Read SetEncodings");
+                           // Console.WriteLine("Read SetEncodings");
                             host.ReadSetEncodings();
                             break;
                         case RfbProtocol.ClientMessages.FRAMEBUFFER_UPDATE_REQUEST:
@@ -158,15 +158,15 @@ namespace NVNC
                             host.ReadFrameBufferUpdateRequest(fb);
                             break;
                         case RfbProtocol.ClientMessages.KEY_EVENT:
-                            Console.WriteLine("Read KeyEvent");      
+                            //Console.WriteLine("Read KeyEvent");      
                             host.ReadKeyEvent();
                             break;
                         case RfbProtocol.ClientMessages.POINTER_EVENT:
-                            Console.WriteLine("Read PointerEvent");
+                            //Console.WriteLine("Read PointerEvent");
                             host.ReadPointerEvent();
                             break;
                         case RfbProtocol.ClientMessages.CLIENT_CUT_TEXT:
-                            Console.WriteLine("Read CutText");
+                           // Console.WriteLine("Read CutText");
                             host.ReadClientCutText();
                             break;
                     }

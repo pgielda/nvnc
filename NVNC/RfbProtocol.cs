@@ -707,7 +707,7 @@ namespace NVNC
 
                 //Do KeyEvent
                 //new Thread(delegate() { 
-                Robot.KeyEvent(pressed, Convert.ToInt32(keysym));
+                //Robot.KeyEvent(pressed, Convert.ToInt32(keysym)); // TODO: KEYS
                 //}).Start();
             }
             catch (IOException ex)
@@ -729,7 +729,7 @@ namespace NVNC
                 ushort X = reader.ReadUInt16();
                 ushort Y = reader.ReadUInt16();
                 /*new Thread(delegate() { */ 
-                Robot.PointerEvent(buttonMask, X, Y);
+                //Robot.PointerEvent(buttonMask, X, Y);  // TODO: MOUSE
                 /*}).Start();*/
             }
             catch (IOException ex)
