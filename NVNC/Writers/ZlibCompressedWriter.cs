@@ -101,7 +101,7 @@ namespace NVNC
                 }
                 compressedWriter.Write(tmp.ToArray());
             }
-            Console.WriteLine("Compressed data length: " + len);
+//            Console.WriteLine("Compressed data length: " + len);
             
             //update our position in the stream
             oldPos = cPos;

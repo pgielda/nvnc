@@ -41,7 +41,7 @@ namespace NVNC.Encodings
             int w = rectangle.Width;
             int h = rectangle.Height;
 
-            Console.WriteLine("Landed at ZRLE start!");
+            //Console.WriteLine("Landed at ZRLE start!");
 
             int rawDataSize = w * h * (this.framebuffer.BitsPerPixel / 8);
             byte[] data = new byte[rawDataSize];

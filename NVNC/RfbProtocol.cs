@@ -598,7 +598,7 @@ namespace NVNC
         /// </summary>
         private void DoFrameBufferUpdate(Framebuffer fb, bool incremental, int x, int y, int width, int height)
         {
-            Console.WriteLine("X: " + x + " Y: " + y + " W: " + fb.Width + " H: " + fb.Height);
+  //          Console.WriteLine("X: " + x + " Y: " + y + " W: " + fb.Width + " H: " + fb.Height);
             int w = fb.Width;
             int h = fb.Height;
             if ((x < 0) || (y < 0) || (width <= 0) || (height <= 0))
@@ -617,7 +617,7 @@ namespace NVNC
                 return;
             }
 
-            Console.WriteLine("Bounds OK!");
+//            Console.WriteLine("Bounds OK!");
 
             List<EncodedRectangle> lst = new List<EncodedRectangle>();
             //List<byte[]> lstHash = new List<byte[]>();
@@ -653,7 +653,7 @@ namespace NVNC
                 localRect.Encode();
 
                 lst.Add(localRect);
-                Console.WriteLine("Encoding took: " + tip.Elapsed);
+//                Console.WriteLine("Encoding took: " + tip.Elapsed);
             }
             catch (Exception localException)
             {
@@ -684,7 +684,7 @@ namespace NVNC
                 writer.Flush();
 
                 Watch.Stop();
-                Console.WriteLine("Sending took: " + Watch.Elapsed);
+            //    Console.WriteLine("Sending took: " + Watch.Elapsed);
             }
             catch (IOException ex)
             {
