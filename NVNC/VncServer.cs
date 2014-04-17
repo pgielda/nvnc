@@ -102,6 +102,11 @@ namespace NVNC
             fb.ProcessFrameRaw += action;
         }
 
+        public void ConnectInputs(Action<bool, uint>key, Action<byte, ushort, ushort>mouse) {
+            fb.DoKeyEvent += key;
+            fb.DoMouseEvent += mouse;
+        }
+
         public void Start()
         {
             if (String.IsNullOrEmpty(Name))
@@ -159,11 +164,11 @@ namespace NVNC
                             break;
                         case RfbProtocol.ClientMessages.KEY_EVENT:
                             //Console.WriteLine("Read KeyEvent");      
-                            host.ReadKeyEvent();
+                            host.ReadKeyEvent(fb);
                             break;
                         case RfbProtocol.ClientMessages.POINTER_EVENT:
                             //Console.WriteLine("Read PointerEvent");
-                            host.ReadPointerEvent();
+                            host.ReadPointerEvent(fb);
                             break;
                         case RfbProtocol.ClientMessages.CLIENT_CUT_TEXT:
                            // Console.WriteLine("Read CutText");

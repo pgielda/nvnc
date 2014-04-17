@@ -697,13 +697,16 @@ namespace NVNC
         /// <summary>
         /// Receives a key press or release event from the client.
         /// </summary>
-        public void ReadKeyEvent()
+        public void ReadKeyEvent(Framebuffer fb)
         {
             try
             {
                 bool pressed = (reader.ReadByte() == 1);
                 ReadPadding(2);
                 uint keysym = reader.ReadUInt32();
+
+                if (fb.DoKeyEvent != null)
+                        fb.DoKeyEvent(pressed, keysym);
 
                 //Do KeyEvent
                 //new Thread(delegate() { 
@@ -721,13 +724,15 @@ namespace NVNC
         /// <summary>
         /// Receives a mouse movement or button press/release from the client.
         /// </summary>
-        public void ReadPointerEvent()
+        public void ReadPointerEvent(Framebuffer fb)
         {
             try
             {
                 byte buttonMask = reader.ReadByte();
                 ushort X = reader.ReadUInt16();
                 ushort Y = reader.ReadUInt16();
+                if (fb.DoMouseEvent != null)
+                        fb.DoMouseEvent(buttonMask, X, Y);
                 /*new Thread(delegate() { */ 
                 //Robot.PointerEvent(buttonMask, X, Y);  // TODO: MOUSE
                 /*}).Start();*/

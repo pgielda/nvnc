@@ -26,11 +26,20 @@ namespace VNCTest
                 return data;
         }
 
+        static void keyev (bool pressed, uint code) {
+                Console.WriteLine("KEY EVENT, pressed = {0}, code = {1}", pressed, code);
+        }
+
+        static void mouseev (byte buttons, ushort x, ushort y) {
+                Console.WriteLine("MOUSE EVENT, buttons = {0}, x={1}, y={2}", buttons,x,y);
+        }
+
         static void Main(string[] args)
         {
             VncServer s = new VncServer("", 5900, "VNC", 640, 480);
             //s.ConnectAction(ac);
             s.ConnectActionRaw(ac2);
+            s.ConnectInputs(keyev, mouseev);
             try
             {
                 s.Start();

@@ -39,6 +39,8 @@ namespace NVNC
 
         public Action<Bitmap> ProcessFrame;
         public Func<int[]> ProcessFrameRaw;
+        public Action<bool, uint> DoKeyEvent;
+        public Action<byte, ushort, ushort>DoMouseEvent;
 
         private readonly int width;
         private readonly int height;
