@@ -78,7 +78,7 @@ namespace NVNC
             _port = port;
             _name = name;
 
-            Size screenSize = ScreenSize();
+            //Size screenSize = ScreenSize();
             fb = new Framebuffer(w,h); // (screenSize.Width, screenSize.Height);
 
             fb.BitsPerPixel = 32;
@@ -93,12 +93,12 @@ namespace NVNC
         }
 
         public void ConnectAction(Action<Bitmap> action) {
-            Console.WriteLine("Connecting action !!!");
+//            Console.WriteLine("Connecting action !!!");
             fb.ProcessFrame += action;
         }
 
         public void ConnectActionRaw(Func<int[]> action) {
-            Console.WriteLine("Conncting raw action !!!");
+//            Console.WriteLine("Conncting raw action !!!");
             fb.ProcessFrameRaw += action;
         }
 
@@ -108,31 +108,31 @@ namespace NVNC
                 throw new ArgumentNullException("Name", "The VNC Server Name cannot be empty.");
             if (Port == 0)
                 throw new ArgumentNullException("Port", "The VNC Server port cannot be zero.");
-            Console.WriteLine("Started VNC Server at port: " + Port);
+//            Console.WriteLine("Started VNC Server at port: " + Port);
 
             host = new RfbProtocol(Port, Name);
             
             host.WriteProtocolVersion();
-            Console.WriteLine("Wrote Protocol Version");
+//            Console.WriteLine("Wrote Protocol Version");
 
             host.ReadProtocolVersion();
-            Console.WriteLine("Read Protocol Version");
+    //        Console.WriteLine("Read Protocol Version");
 
-            Console.WriteLine("Awaiting Authentication");
+      //      Console.WriteLine("Awaiting Authentication");
             if (!host.WriteAuthentication(Password))
             {
-                Console.WriteLine("Authentication failed !");
+//                Console.WriteLine("Authentication failed !");
                 host.Close();
                 Start();
             }
             else
             {
-                Console.WriteLine("Authentication successfull !");
+            //    Console.WriteLine("Authentication successfull !");
 
                 bool share = host.ReadClientInit();
-                Console.WriteLine("Share: " + share.ToString());
+  //              Console.WriteLine("Share: " + share.ToString());
 
-                Console.WriteLine("Server name: " + fb.DesktopName);
+    //            Console.WriteLine("Server name: " + fb.DesktopName);
                 host.WriteServerInit(this.fb);
 
                 while ((host.isRunning))
@@ -154,7 +154,7 @@ namespace NVNC
                             host.ReadSetEncodings();
                             break;
                         case RfbProtocol.ClientMessages.FRAMEBUFFER_UPDATE_REQUEST:
-                            Console.WriteLine("Read FrameBufferUpdateRequest");
+//                            Console.WriteLine("Read FrameBufferUpdateRequest");
                             host.ReadFrameBufferUpdateRequest(fb);
                             break;
                         case RfbProtocol.ClientMessages.KEY_EVENT:

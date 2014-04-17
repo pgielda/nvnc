@@ -224,7 +224,7 @@ namespace NVNC
                 localClient.NoDelay = true; //Disable the Naggle algorithm
                 
                 IPAddress localIP = IPAddress.Parse(((IPEndPoint)localClient.RemoteEndPoint).Address.ToString());
-                Console.WriteLine(localIP);
+//                Console.WriteLine(localIP);
 
                 stream = new NetworkStream(localClient, true);
                 reader = new BigEndianBinaryReader(stream);
